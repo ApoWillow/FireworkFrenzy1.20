@@ -37,8 +37,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements BlastJum
 
 	@Inject(method = "initDataTracker", at = @At("HEAD"))
 	public void fireworkfrenzy$initDataTracker(CallbackInfo info) {
-		dataTracker.startTracking(FireworkFrenzy.BLAST_JUMPING, false);
-		dataTracker.startTracking(FireworkFrenzy.TIME_ON_GROUND, 0);
+		dataTracker.set(FireworkFrenzy.BLAST_JUMPING, false);
+		dataTracker.set(FireworkFrenzy.TIME_ON_GROUND, 0);
 	}
 
 	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))

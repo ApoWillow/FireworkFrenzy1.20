@@ -3,11 +3,13 @@ package com.apowillow.fireworkfrenzy.enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.util.Rarity;
 
 public class AirStrikeEnchantment extends Enchantment {
 	public AirStrikeEnchantment() {
-		super(Rarity.UNCOMMON, EnchantmentTarget.CROSSBOW, new EquipmentSlot[] {EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
+		super(Rarity.UNCOMMON, EnchantmentEffectTarget., new EquipmentSlot[] {EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
 	}
 
 	@Override

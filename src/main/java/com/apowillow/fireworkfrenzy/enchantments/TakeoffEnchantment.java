@@ -1,13 +1,16 @@
 package com.apowillow.fireworkfrenzy.enchantments;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentEffectContext;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.util.Rarity;
 
 public class TakeoffEnchantment extends Enchantment {
 	public TakeoffEnchantment() {
-		super(Rarity.UNCOMMON, EnchantmentTarget.ARMOR_FEET, new EquipmentSlot[] {EquipmentSlot.FEET});
+		super(Rarity.UNCOMMON, EnchantmentEffectTarget., new EquipmentSlot[] {EquipmentSlot.FEET});
 	}
 
 	@Override

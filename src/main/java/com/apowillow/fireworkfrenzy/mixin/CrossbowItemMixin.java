@@ -3,10 +3,12 @@ package com.apowillow.fireworkfrenzy.mixin;
 import com.apowillow.fireworkfrenzy.FireworkFrenzy;
 import com.apowillow.fireworkfrenzy.integration.FireworkFrenzyConfig;
 import com.apowillow.fireworkfrenzy.util.BlastJumper;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -32,7 +34,7 @@ public abstract class CrossbowItemMixin extends RangedWeaponItem {
 
 	@Inject(method = "getPullTime", at = @At("HEAD"), cancellable = true)
 	private static void fireworkfrenzy$getPullTime(ItemStack stack, CallbackInfoReturnable<Integer> info) {
-		if(EnchantmentHelper.getLevel(FireworkFrenzy.AIR_STRIKE, stack) > 0) {
+		if(EnchantmentHelper.getLevel((RegistryEntry<Enchantment>) FireworkFrenzy.AIR_STRIKE, stack) > 0) {
 			if(jumper != null && jumper.isBlastJumping())
 				info.setReturnValue(FireworkFrenzyConfig.airStrikeJumpingChargeTime);
 			else
@@ -48,7 +50,7 @@ public abstract class CrossbowItemMixin extends RangedWeaponItem {
 
 	@ModifyVariable(method = "loadProjectile", at = @At(value = "STORE", ordinal = 0), ordinal = 2)
 	private static boolean fireworkfrenzy$loadProjectile(boolean bl, LivingEntity shooter, ItemStack crossbow, ItemStack projectile, boolean simulated, boolean creative) {
-		boolean hasInfinity = FireworkFrenzyConfig.crossbowsGetInfinity && EnchantmentHelper.getLevel(Enchantments.INFINITY, crossbow) > 0;
+		boolean hasInfinity = FireworkFrenzyConfig.crossbowsGetInfinity && EnchantmentHelper.getLevel((RegistryEntry<Enchantment>) Enchantments.INFINITY, crossbow) > 0;
 		boolean arrowsGetInfinity = hasInfinity && projectile.isOf(Items.ARROW);
 		boolean rocketsGetInfinity = hasInfinity && FireworkFrenzyConfig.infinityAffectsRockets && projectile.getItem() instanceof FireworkRocketItem;
 

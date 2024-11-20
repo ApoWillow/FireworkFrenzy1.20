@@ -22,7 +22,7 @@ public class BlastJumpingSoundInstance extends MovingSoundInstance {
 	public void tick() {
 		++this.tickCount;
 
-		if(!this.player.isRemoved() && !this.player.isFallFlying() && (this.tickCount <= 20 || (this.player instanceof BlastJumper jumper && jumper.isBlastJumping()))) {
+		if(!this.player.isRemoved() && !this.player.isGliding() && (this.tickCount <= 20 || (this.player instanceof BlastJumper jumper && jumper.isBlastJumping()))) {
 			this.x = this.player.getX();
 			this.y = this.player.getY();
 			this.z = this.player.getZ();

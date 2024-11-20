@@ -4,6 +4,7 @@ import com.apowillow.fireworkfrenzy.FireworkFrenzy;
 import com.apowillow.fireworkfrenzy.entities.DamageCloudEntity;
 import com.apowillow.fireworkfrenzy.integration.FireworkFrenzyConfig;
 import com.apowillow.fireworkfrenzy.util.BlastJumper;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
@@ -18,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -102,9 +104,9 @@ public abstract class FireworkRocketEntityMixin extends ProjectileEntity impleme
 				double inverseDistance = MathHelper.clamp(1 - (distance / radius), 0, 1);
 				float fireworkDamage = (target instanceof PlayerEntity ? FireworkFrenzyConfig.playerDamage : FireworkFrenzyConfig.mobDamage) * nbtList.size();
 
-				if(target == getOwner() && EnchantmentHelper.getLevel(FireworkFrenzy.TAKEOFF, target.getEquippedStack(EquipmentSlot.FEET)) > 0)
+				if(target == getOwner() && EnchantmentHelper.getLevel((RegistryEntry<Enchantment>) FireworkFrenzy.TAKEOFF, target.getEquippedStack(EquipmentSlot.FEET)) > 0)
 					fireworkDamage = 0;
-				if(EnchantmentHelper.getLevel(FireworkFrenzy.AIR_STRIKE, stack) > 0 && getOwner() instanceof BlastJumper jumper && jumper.isBlastJumping())
+				if(EnchantmentHelper.getLevel((RegistryEntry<Enchantment>) FireworkFrenzy.AIR_STRIKE, stack) > 0 && getOwner() instanceof BlastJumper jumper && jumper.isBlastJumping())
 					fireworkDamage *= FireworkFrenzyConfig.airStrikeDamageMultiplier;
 
 				if(glowingAmount > 0)
